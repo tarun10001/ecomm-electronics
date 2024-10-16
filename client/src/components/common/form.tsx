@@ -1,5 +1,4 @@
 import React from "react";
-import { registerFormControls } from "../../config";
 import { Label } from "../ui/label";
 import {
   Select,
@@ -104,7 +103,7 @@ const CommonForm = ({
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => {
           return (
-            <div className="grid w-full gap-1.5">
+            <div className="grid w-full gap-1.5"  key={controlItem.name}>
               <Label className="mb-1">{controlItem.label}</Label>
               {renderInputsByComponentType(controlItem)}
             </div>

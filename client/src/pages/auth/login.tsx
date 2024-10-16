@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CommonForm from '../../components/common/form';
 import { loginFormControls } from '../../config';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../store/auth-slice';
+import { useToast } from '../../hooks/use-toast';
 
 const initialState = {
   email : '',
@@ -10,9 +13,27 @@ const initialState = {
 
 const AuthLogin = () => {
   const [formData, setFomData] = useState(initialState);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {toast} = useToast();
 
-  const onSubmit = () => {
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(formData)).then((data) => {
+      // console.log(data);
+      if (data?.payload?.success) {
+        toast({
+          title: data?.payload?.message
+        })
+        // navigate('/home')
+      }
+      else {
+        toast({
+          title: data?.payload?.message,
+          variant: 'destructive'
+        })
+      }
+    })
   }
   return (
     <div className='mx-auto w-full max-w-md space-y-6'>
