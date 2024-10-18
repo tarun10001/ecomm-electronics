@@ -8,25 +8,32 @@ import AdminFeatures from "./pages/admin-view/features";
 import AdminOrders from "./pages/admin-view/orders";
 import AdminProducts from "./pages/admin-view/products";
 import AdminDashboard from "./pages/admin-view/dashboard";
-import ShoppingLayout from "./pages/shopiing-view/layout";
+import ShoppingLayout from "./pages/shopping-view/layout";
 import NotFound from "./pages/not-found";
-import ShoppingHome from "./pages/shopiing-view/home";
-import ShoppingListing from "./pages/shopiing-view/listing";
-import ShoppingCheckout from "./pages/shopiing-view/checkout";
-import ShoppingAccount from "./pages/shopiing-view/account";
+import ShoppingHome from "./pages/shopping-view/home";
+import ShoppingListing from "./pages/shopping-view/listing";
+import ShoppingCheckout from "./pages/shopping-view/checkout";
+import ShoppingAccount from "./pages/shopping-view/account";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice";
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton";
+import { AppDispatch, RootState } from "./store/store";
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string; 
+}
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const { user, isAuthenticated, isLoading } = useSelector(
-    (state) => state.auth
+    (state: RootState) => state.auth
   );
 
   useEffect(() => {
@@ -34,11 +41,11 @@ function App() {
   }, [dispatch]);
 
   if (isLoading) {
-    return <Skeleton className="w-[600px] h-[600px]" />
+    return <Skeleton className="w-[800] h-[600px]" />;
   }
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white">
+    <div className="flex flex-col overflow-hidden bg-white w-full">
       <Routes>
         <Route
           path="/auth"

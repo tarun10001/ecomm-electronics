@@ -22,21 +22,28 @@ export const registerFormControls = [
   },
 ];
 
+export interface FormControl {
+  name: string;
+  label: string;
+  placeholder?: string;
+  componentType: "input" | "select" | "textarea";
+  type?: string;  // Only relevant for "input" fields
+  options?: { id: string; label: string }[]; // Only relevant for "select" fields
+}
 
-export const loginFormControls = [
-    {
-      name: "email",
-      label: "Email",
-      placeholder: "Enter your email",
-      componentType: "input",
-      type: "email",
-    },
-    {
-      name: "password",
-      label: "Password",
-      placeholder: "Enter your user password",
-      componentType: "input",
-      type: "password",
-    },
-  ];
-  
+export const loginFormControls: FormControl[] = [
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Enter your email",
+    componentType: "input",
+    type: "email",
+  },
+  {
+    name: "password",
+    label: "Password",
+    placeholder: "Enter your user password",
+    componentType: "input",
+    type: "password",
+  },
+];

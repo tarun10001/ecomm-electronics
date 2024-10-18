@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const AuthRegister = () => {
-  const [formData, setFomData] = useState(initialState);
+  const [formData, setFormData] = useState(initialState);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const AuthRegister = () => {
         formControls={registerFormControls}
         buttonText={"Sign Up"}
         formData={formData}
-        setFomData={setFomData}
+        setFormData={setFormData}
         onSubmit={onSubmit}
       />
     </div>

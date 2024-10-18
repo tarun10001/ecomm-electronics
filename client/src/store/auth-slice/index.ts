@@ -1,7 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
+type User = {
+  id: string;
+  username: string;
+  email: string;
+  role: 'admin' | 'user';
+};
+
+interface AuthState {
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  user: User | null;
+}
+
+const initialState: AuthState = {
   isAuthenticated: false,
   isLoading: true,
   user: null,

@@ -11,14 +11,31 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
-const CommonForm = ({
+interface FormControl {
+  name: string;
+  label: string;
+  componentType: "input" | "select" | "textarea";
+  type?: string;
+  placeholder?: string;
+  options?: { id: string; label: string }[]; 
+}
+
+interface CommonFormProps {
+  formControls: FormControl[]; 
+  formData: { [key: string]: string }; 
+  setFormData: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
+  onSubmit: (e: React.FormEvent) => void;
+  buttonText?: string;
+}
+
+const CommonForm: React.FC<CommonFormProps> = ({
   formControls,
   formData,
-  setFomData,
+  setFormData,
   onSubmit,
   buttonText,
 }) => {
-  function renderInputsByComponentType(getControlItem) {
+  function renderInputsByComponentType(getControlItem: FormControl) {
     let element = null;
     const value = formData[getControlItem.name] || "";
 
@@ -32,7 +49,7 @@ const CommonForm = ({
             type={getControlItem.type}
             value={value}
             onChange={(event) =>
-              setFomData({
+              setFormData({
                 ...formData,
                 [getControlItem.name]: event.target.value,
               })
@@ -43,7 +60,7 @@ const CommonForm = ({
 
       case "select":
         element = (
-          <Select onValueChange={(value) => setFomData({...formData,
+          <Select onValueChange={(value) => setFormData({...formData,
             [getControlItem.name] : value
           })} value={value}>
             <SelectTrigger className="w-full">
@@ -69,7 +86,7 @@ const CommonForm = ({
           <Textarea
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
-            id={getControlItem.id}
+            id={getControlItem.name}
             value={value}
           />
         );
@@ -84,7 +101,7 @@ const CommonForm = ({
             type={getControlItem.type}
             value={value}
             onChange={(event) =>
-              setFomData({
+              setFormData({
                 ...formData,
                 [getControlItem.name]: event.target.value,
               })
