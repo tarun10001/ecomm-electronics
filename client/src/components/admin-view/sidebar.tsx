@@ -5,10 +5,18 @@ import {
   BadgeCheck,
   Sheet,
 } from "lucide-react";
-import React, { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 import { Dialog } from "@radix-ui/react-dialog";
+
+interface MenuItemsProps {
+  setOpen?: (open: boolean) => void; 
+}
+
+interface AdminSidebarProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
 
 export const adminSidebarMenuItems = [
   {
@@ -31,7 +39,7 @@ export const adminSidebarMenuItems = [
   },
 ];
 
-function MenuItems({ setOpen }) {
+const MenuItems: React.FC<MenuItemsProps> = ({ setOpen }) => {
   const navigate = useNavigate();
   return (
     <nav className="mt-8 flex-col flex gap-2">
@@ -52,12 +60,11 @@ function MenuItems({ setOpen }) {
   );
 }
 
-const AdminSidebar = ({ open, setOpen }) => {
+const AdminSidebar: React.FC<AdminSidebarProps> = ({ open, setOpen }) => {
   const navigate = useNavigate();
   return (
     <>
       <Dialog open={open} onOpenChange={setOpen}>
-        {/* <Sheet> */}
         <SheetContent side="left" className="w-64">
           <div className="flex flex-col h-full">
             <SheetHeader className="border-b">
@@ -69,7 +76,6 @@ const AdminSidebar = ({ open, setOpen }) => {
             <MenuItems setOpen={setOpen} />
           </div>
         </SheetContent>
-        {/* </Sheet> */}
       </Dialog>
       <aside className="hidden w-64 flex-col border-r bg-background lg:flex">
         <div

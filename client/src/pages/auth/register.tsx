@@ -5,6 +5,7 @@ import { registerFormControls } from "../../config";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/auth-slice";
 import { useToast } from "../../hooks/use-toast";
+import { AppDispatch } from "../../store/store";
 
 const initialState = {
   userName: "",
@@ -15,23 +16,23 @@ const initialState = {
 const AuthRegister = () => {
   const [formData, setFormData] = useState(initialState);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const {toast} = useToast();
+  const { toast } = useToast();
   console.log(formData);
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(registerUser(formData)).then((data) => {
       if (data?.payload?.success) {
         toast({
-          title: data?.payload?.message
-        })
+          title: data?.payload?.message,
+        });
         navigate("/auth/login");
-      }else {
+      } else {
         toast({
           title: data?.payload?.message,
-          variant: 'destructive'
-        })
+          variant: "destructive",
+        });
       }
     });
   };

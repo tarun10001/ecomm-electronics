@@ -13,16 +13,21 @@ import { AppDispatch } from "../../store/store";
 // }
 
 interface FormData {
-  [key: string]: string; // Change this to a more generic type
+  [key: string]: string;
 }
 
-const initialState: FormData = {
+// const initialState: FormData = {
+//   email: "",
+//   password: "",
+// };
+
+const initialState = {
   email: "",
   password: "",
 };
 
 const AuthLogin: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>(initialState);
+  const [formData, setFormData] = useState(initialState);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const { toast } = useToast();

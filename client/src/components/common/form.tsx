@@ -17,13 +17,13 @@ interface FormControl {
   componentType: "input" | "select" | "textarea";
   type?: string;
   placeholder?: string;
-  options?: { id: string; label: string }[]; 
+  options?: { id: string; label: string }[];
 }
 
 interface CommonFormProps {
-  formControls: FormControl[]; 
-  formData: { [key: string]: string }; 
-  setFormData: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
+  formControls: any;
+  formData: any;
+  setFormData: any;
   onSubmit: (e: React.FormEvent) => void;
   buttonText?: string;
 }
@@ -60,13 +60,14 @@ const CommonForm: React.FC<CommonFormProps> = ({
 
       case "select":
         element = (
-          <Select onValueChange={(value) => setFormData({...formData,
-            [getControlItem.name] : value
-          })} value={value}>
+          <Select
+            onValueChange={(value) =>
+              setFormData({ ...formData, [getControlItem.name]: value })
+            }
+            value={value}
+          >
             <SelectTrigger className="w-full">
-              <SelectValue
-                placeholder={getControlItem.placeholder}
-              ></SelectValue>
+              <SelectValue placeholder={getControlItem.label}></SelectValue>
             </SelectTrigger>
             <SelectContent>
               {getControlItem.options && getControlItem.options.length > 0
@@ -120,7 +121,7 @@ const CommonForm: React.FC<CommonFormProps> = ({
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => {
           return (
-            <div className="grid w-full gap-1.5"  key={controlItem.name}>
+            <div className="grid w-full gap-1.5" key={controlItem.name}>
               <Label className="mb-1">{controlItem.label}</Label>
               {renderInputsByComponentType(controlItem)}
             </div>

@@ -20,9 +20,20 @@ const initialState: AuthState = {
   user: null,
 };
 
+interface RegisterPayload {
+  userName: string;
+  email: string;
+  password: string;
+}
+
+interface LoginPayload {
+  email: string;
+  password: string;
+}
+
 export const registerUser = createAsyncThunk(
   "/auth/register",
-  async (formData) => {
+  async (formData: RegisterPayload) => {
     const response = await axios.post(
       "http://localhost:5000/api/auth/register",
       formData,
@@ -48,7 +59,7 @@ export const checkAuth = createAsyncThunk("/auth/checkauth", async () => {
   return response.data;
 });
 
-export const loginUser = createAsyncThunk("/auth/login", async (formData) => {
+export const loginUser = createAsyncThunk("/auth/login", async (formData: LoginPayload) => {
   const response = await axios.post(
     "http://localhost:5000/api/auth/login",
     formData,
