@@ -2,7 +2,7 @@ import { AlignJustify, LogOut } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 
-const AdminHeader = ({setOpen}) => {
+const AdminHeader = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
   return (
     <header className="flex items-center justify-between px-4 py-3 bg-background border-b">
       <Button onClick={() => setOpen(true)} className="lg:hidden sm:block">

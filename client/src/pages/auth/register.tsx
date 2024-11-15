@@ -19,7 +19,7 @@ const AuthRegister = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const { toast } = useToast();
-  console.log(formData);
+  // console.log(formData);
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(registerUser(formData)).then((data) => {

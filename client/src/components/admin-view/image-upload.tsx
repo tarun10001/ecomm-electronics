@@ -4,6 +4,7 @@ import { Input } from "../ui/input";
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import axios from "axios";
+import { Skeleton } from "../ui/skeleton";
 
 interface ProductImageUploadProps {
   imageFile: File | null;
@@ -11,6 +12,7 @@ interface ProductImageUploadProps {
   uploadedImageUrl: string | null;
   setUploadedImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
   setImageLoadingState: React.Dispatch<React.SetStateAction<boolean>>;
+  imageLoadingState: boolean;
 }
 
 const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
@@ -19,6 +21,7 @@ const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
   uploadedImageUrl,
   setUploadedImageUrl,
   setImageLoadingState,
+  imageLoadingState,
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +99,8 @@ const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
             <UploadCloudIcon className="w-10 h-10 text-muted-foreground mb-2" />
             <span>Drag & drop or click to upload image</span>
           </Label>
+        ) : imageLoadingState ? (
+          <Skeleton className="h-10 bg-gray-100" />
         ) : (
           <div className="flex items-center justify-between">
             <div className="flex items-center">
