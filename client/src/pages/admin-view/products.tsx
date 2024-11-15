@@ -16,6 +16,7 @@ import {
 } from "../../store/admin/products-slice";
 import { useToast } from "../../hooks/use-toast";
 import { AppDispatch, RootState } from "../../store/store";
+import AdminProductTile from "./product-tile";
 
 interface FormData {
   image: string | null;
@@ -90,7 +91,13 @@ const AdminProducts = () => {
           Add New Product
         </Button>
       </div>
-      <div className="gird gap-4 md:grid-cols-3 lg:grid-cols-4"></div>
+      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {productList && productList.length > 0
+          ? productList.map((productItem) => (
+              <AdminProductTile product={productItem} />
+            ))
+          : null}
+      </div>
       <Dialog
         open={openCreateProductsDialog}
         onOpenChange={() => setOpenCreateProductsDialog(false)}
