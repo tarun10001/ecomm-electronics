@@ -26,6 +26,7 @@ interface CommonFormProps {
   setFormData: any;
   onSubmit: (e: React.FormEvent) => void;
   buttonText?: string;
+  isBtnDisabled?: boolean;
 }
 
 const CommonForm: React.FC<CommonFormProps> = ({
@@ -34,6 +35,7 @@ const CommonForm: React.FC<CommonFormProps> = ({
   setFormData,
   onSubmit,
   buttonText,
+  isBtnDisabled
 }) => {
   function renderInputsByComponentType(getControlItem: FormControl) {
     let element = null;
@@ -89,6 +91,12 @@ const CommonForm: React.FC<CommonFormProps> = ({
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
             value={value}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -128,7 +136,7 @@ const CommonForm: React.FC<CommonFormProps> = ({
           );
         })}
       </div>
-      <Button type="submit" className="mt-2 w-full">
+      <Button disabled={isBtnDisabled} type="submit" className="mt-2 w-full">
         {buttonText || "Submit"}
       </Button>
     </form>

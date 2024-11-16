@@ -2,7 +2,20 @@ import React from "react";
 import { Card, CardContent, CardFooter } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 
-const AdminProductTile = ({ product }) => {
+interface AdminProductTileProps {
+  product: any;
+  setFormData: any;
+  setCurrentEditedId: React.Dispatch<React.SetStateAction<string | null>>;
+  setOpenCreateProductsDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  isEditMode: boolean
+}
+
+const AdminProductTile: React.FC<AdminProductTileProps> = ({
+  product,
+  setFormData,
+  setCurrentEditedId,
+  setOpenCreateProductsDialog,
+}) => {
   return (
     <Card className="w-full max-w-sm mx-auto">
       <div>
@@ -21,17 +34,25 @@ const AdminProductTile = ({ product }) => {
                 product?.salePrice > 0 ? "line-through" : ""
               } text-lg font-semibold text-primary`}
             >
-              {product?.price}
+              ${product?.price}
             </span>
             {product?.salePrice > 0 ? (
               <span className="text-lg font-bold text-primary">
-                {product?.salePrice}
+                ${product?.salePrice}
               </span>
             ) : null}
           </div>
         </CardContent>
         <CardFooter className="flex justify-between items-center">
-          <Button>Edit</Button>
+          <Button
+            onClick={() => {
+              setOpenCreateProductsDialog(true);
+              setCurrentEditedId(product?._id);
+              setFormData(product);
+            }}
+          >
+            Edit
+          </Button>
           <Button>Delete</Button>
         </CardFooter>
       </div>
