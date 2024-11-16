@@ -12,6 +12,7 @@ import ProductImageUpload from "../../components/admin-view/image-upload";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewProduct,
+  deleteProduct,
   editProduct,
   fetchAllProducts,
 } from "../../store/admin/products-slice";
@@ -101,6 +102,15 @@ const AdminProducts = () => {
       .every((item) => item);
   }
 
+  function handleDelete(getCurrentProductId: string) {
+    // console.log(getCurrentProductId);
+    dispatch(deleteProduct(getCurrentProductId)).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchAllProducts());
+      }
+    });
+  }
+
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
@@ -125,6 +135,7 @@ const AdminProducts = () => {
                 setCurrentEditedId={setCurrentEditedId}
                 setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                 isEditMode={currentEditedId !== null}
+                handleDelete={handleDelete}
               />
             ))
           : null}

@@ -7,7 +7,8 @@ interface AdminProductTileProps {
   setFormData: any;
   setCurrentEditedId: React.Dispatch<React.SetStateAction<string | null>>;
   setOpenCreateProductsDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  isEditMode: boolean
+  isEditMode: boolean;
+  handleDelete: (getCurrentProductId: string) => void;
 }
 
 const AdminProductTile: React.FC<AdminProductTileProps> = ({
@@ -15,6 +16,7 @@ const AdminProductTile: React.FC<AdminProductTileProps> = ({
   setFormData,
   setCurrentEditedId,
   setOpenCreateProductsDialog,
+  handleDelete,
 }) => {
   return (
     <Card className="w-full max-w-sm mx-auto">
@@ -53,7 +55,7 @@ const AdminProductTile: React.FC<AdminProductTileProps> = ({
           >
             Edit
           </Button>
-          <Button>Delete</Button>
+          <Button onClick={() => handleDelete(product?._id)}>Delete</Button>
         </CardFooter>
       </div>
     </Card>
