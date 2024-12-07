@@ -117,7 +117,7 @@ const AdminProducts = () => {
 
   // console.log(formData);
   // console.log(productList, uploadedImageUrl, "productList");
-  console.log(formData, "productList");
+  // console.log(formData, "productList");
 
   return (
     <>
