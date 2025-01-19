@@ -1,10 +1,4 @@
-import {
-  HousePlug,
-  LogOut,
-  Menu,
-  ShoppingCart,
-  UserCog,
-} from "lucide-react";
+import { HousePlug, LogOut, Menu, ShoppingCart, UserCog } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
@@ -75,7 +69,6 @@ function HeaderRightContent() {
     </div>
   );
 }
-
 const ShoppingHeader = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   // console.log(user, "userhello")
@@ -96,7 +89,7 @@ const ShoppingHeader = () => {
             </SheetTrigger>
             <SheetContent side="left" className="w-full max-w-xs">
               <MenuItems />
-            <HeaderRightContent />
+              <HeaderRightContent />
             </SheetContent>
           </Sheet>
         </Dialog>
@@ -104,9 +97,9 @@ const ShoppingHeader = () => {
         <div className="hidden lg:block">
           <MenuItems />
         </div>
-          <div className="hidden lg:block">
-            <HeaderRightContent />
-          </div>
+        <div className="hidden lg:block">
+          <HeaderRightContent />
+        </div>
       </div>
     </header>
   );

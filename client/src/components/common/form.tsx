@@ -18,6 +18,7 @@ interface FormControl {
   type?: string;
   placeholder?: string;
   options?: { id: string; label: string }[];
+  id: string;
 }
 
 interface CommonFormProps {
@@ -35,7 +36,7 @@ const CommonForm: React.FC<CommonFormProps> = ({
   setFormData,
   onSubmit,
   buttonText,
-  isBtnDisabled
+  isBtnDisabled,
 }) => {
   function renderInputsByComponentType(getControlItem: FormControl) {
     let element = null;
@@ -69,12 +70,12 @@ const CommonForm: React.FC<CommonFormProps> = ({
             value={value}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder={getControlItem.label}></SelectValue>
+              <SelectValue placeholder={getControlItem.label} />
             </SelectTrigger>
             <SelectContent>
               {getControlItem.options && getControlItem.options.length > 0
                 ? getControlItem.options.map((optionItem) => (
-                    <SelectItem key={optionItem.id} value={optionItem.label}>
+                    <SelectItem key={optionItem.id} value={optionItem.id}>
                       {optionItem.label}
                     </SelectItem>
                   ))
@@ -89,7 +90,7 @@ const CommonForm: React.FC<CommonFormProps> = ({
           <Textarea
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
-            id={getControlItem.name}
+            id={getControlItem.id}
             value={value}
             onChange={(event) =>
               setFormData({

@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
+import ProductImageUpload from "../../components/admin-view/image-upload";
+import AdminProductTile from "./product-tile";
+import CommonForm from "../../components/common/form";
 import { Button } from "../../components/ui/button";
 import {
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "../../components/ui/sheet";
-import { Dialog } from "@radix-ui/react-dialog";
-import CommonForm from "../../components/common/form";
+import { useToast } from "../../hooks/use-toast";
 import { addProductFormElements } from "../../config";
-import ProductImageUpload from "../../components/admin-view/image-upload";
-import { useDispatch, useSelector } from "react-redux";
 import {
   addNewProduct,
   deleteProduct,
   editProduct,
   fetchAllProducts,
 } from "../../store/admin/products-slice";
-import { useToast } from "../../hooks/use-toast";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Dialog } from "@radix-ui/react-dialog";
 import { AppDispatch, RootState } from "../../store/store";
-import AdminProductTile from "./product-tile";
 
 interface FormData {
   image: string | null;

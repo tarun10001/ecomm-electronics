@@ -60,7 +60,7 @@ export const fetchAllProducts = createAsyncThunk(
 );
 
 export const editProduct = createAsyncThunk<any, EditProductParams>(
-  "/products/addNewProduct",
+  "/products/editProduct",
   async ({ id, formData }) => {
     const result = await axios.put(
       `http://localhost:5000/api/admin/products/edit/${id}`,
@@ -85,7 +85,7 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
-const adminProductsSlice = createSlice({
+const AdminProductsSlice = createSlice({
   name: "adminProducts",
   initialState,
   reducers: {},
@@ -106,4 +106,4 @@ const adminProductsSlice = createSlice({
   },
 });
 
-export default adminProductsSlice;
+export default AdminProductsSlice.reducer;

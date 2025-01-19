@@ -16,7 +16,7 @@ export const registerFormControls = [
   {
     name: "password",
     label: "Password",
-    placeholder: "Enter your user password",
+    placeholder: "Enter your password",
     componentType: "input",
     type: "password",
   },
@@ -42,7 +42,7 @@ export const loginFormControls: FormControl[] = [
   {
     name: "password",
     label: "Password",
-    placeholder: "Enter your user password",
+    placeholder: "Enter your password",
     componentType: "input",
     type: "password",
   },
@@ -112,31 +112,95 @@ export const addProductFormElements = [
 
 export const shoppingViewHeaderMenuItems = [
   {
-    id: 'home',
-    label: 'Home',
-    path: '/shop/home'
+    id: "home",
+    label: "Home",
+    path: "/shop/home",
   },
   {
-    id: 'men',
-    label: 'Men',
-    path: '/shop/listing'
+    id: "products",
+    label: "Products",
+    path: "/shop/listing",
   },
   {
-    id: 'women',
-    label: 'Women',
-    path: '/shop/listing'
+    id: "men",
+    label: "Men",
+    path: "/shop/listing",
   },
   {
-    id: 'footwear',
-    label: 'Footwear',
-    path: '/shop/listing'
+    id: "women",
+    label: "Women",
+    path: "/shop/listing",
   },
   {
-    id: 'accessories',
-    label: 'Accessories',
-    path: '/shop/listing'
+    id: "kids",
+    label: "Kids",
+    path: "/shop/listing",
   },
-]
+  {
+    id: "footwear",
+    label: "Footwear",
+    path: "/shop/listing",
+  },
+  {
+    id: "accessories",
+    label: "Accessories",
+    path: "/shop/listing",
+  },
+  {
+    id: "search",
+    label: "Search",
+    path: "/shop/search",
+  },
+];
+
+export const categoryOptionsMap: { [key: string]: string } = {
+  men: "Men",
+  women: "Women",
+  kids: "Kids",
+  accessories: "Accessories",
+  footwear: "Footwear",
+};
+
+export const brandOptionsMap: { [key: string]: string } = {
+  nike: "Nike",
+  adidas: "Adidas",
+  puma: "Puma",
+  levi: "Levi",
+  zara: "Zara",
+  "h&m": "H&M",
+};
+
+type FilterOption = { id: string; label: string };
+
+export const filterOptions: Record<string, FilterOption[]> = {
+  category: [
+    { id: "men", label: "Men" },
+    { id: "women", label: "Women" },
+    { id: "kids", label: "Kids" },
+    { id: "accessories", label: "Accessories" },
+    { id: "footwear", label: "Footwear" },
+  ],
+  brand: [
+    { id: "nike", label: "Nike" },
+    { id: "adidas", label: "Adidas" },
+    { id: "puma", label: "Puma" },
+    { id: "levi", label: "Levi's" },
+    { id: "zara", label: "Zara" },
+    { id: "h&m", label: "H&M" },
+  ],
+};
+
+type SortOption = {
+  id: string;
+  label: string;
+};
+
+export const sortOptions: SortOption[] = [
+  { id: "price-lowtohigh", label: "Price: Low to High" },
+  { id: "price-hightolow", label: "Price: High to Low" },
+  { id: "title-atoz", label: "Title: A to Z" },
+  { id: "title-ztoa", label: "Title: Z to A" },
+];
 
 // export const addProductFormElements: FormControl[] = [
 //   {

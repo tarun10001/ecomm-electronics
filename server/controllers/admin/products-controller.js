@@ -31,7 +31,7 @@ const addProduct = async (req, res) => {
       salePrice,
       totalStock,
     } = req.body;
-    const newlyCreatedProducts = new Product({
+    const newlyCreatedProduct = new Product({
       image,
       title,
       description,
@@ -41,10 +41,10 @@ const addProduct = async (req, res) => {
       salePrice,
       totalStock,
     });
-    await newlyCreatedProducts.save();
+    await newlyCreatedProduct.save();
     res.status(201).json({
       success: true,
-      data: newlyCreatedProducts,
+      data: newlyCreatedProduct,
     });
   } catch (error) {
     console.log(error);
